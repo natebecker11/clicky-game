@@ -5,12 +5,7 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  NavItem } from 'reactstrap';
 
   export default class MainNav extends React.Component {
     constructor(props) {
@@ -33,7 +28,6 @@ import {
             <NavbarBrand href="/">a game of clicks</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
-
               <Nav className="ml-auto" navbar>
                 <NavItem>
                   <span className="navbar-text mr-1">Score: {this.props.children.score} |</span>

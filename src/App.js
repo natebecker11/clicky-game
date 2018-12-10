@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MainNav from './components/MainNav'
 import ClickPic from './components/ClickPic'
-import { Jumbotron, Button } from 'reactstrap';
+import { Jumbotron } from 'reactstrap';
 import chars from './assets/chars.json'
 
 import './App.css';
@@ -44,10 +44,16 @@ class App extends Component {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
-    // return array
   }
 
   setShuffledArray = (event) => {
+    if (this.state.score === 11) {
+      return this.setState({
+        marqueeText: "WINNER!!!!!",
+        score: 12,
+        topScore: 12
+      })
+    }
     let arrayCopy = this.state.charPics.slice(0)
     const clickedCharIndex = arrayCopy.findIndex(char => char.src === event.target.dataset.name)
     const marquee = document.querySelector('#marquee')
@@ -65,8 +71,6 @@ class App extends Component {
         charPics: JSON.parse(JSON.stringify(chars))
       })
     }
-    // console.log(clickedCharIndex)
-    // let arrayCopy = this.shuffleArray(this.state.charPics.slice(0))
     arrayCopy[clickedCharIndex].clicked = true
     marquee.classList.add('blinkC')
     setTimeout(() => {
@@ -94,10 +98,13 @@ class App extends Component {
           <Jumbotron>
             <h1 className="display-3">A Game Of Clicks</h1>
             <p className="lead">In The Game Of Clicks, You Either Click... Or You Don't.</p>
-            <p id="marquee" className="lead font-weight-bold">{
-              this.state.marqueeText
-            }</p>
+
           </Jumbotron>
+        </div>
+        <div className="container">
+        <h2 id="marquee" className="font-weight-bold">{
+              this.state.marqueeText
+            }</h2>
         </div>
         <div className="container">
           <div className="row" id='shakenDiv'>

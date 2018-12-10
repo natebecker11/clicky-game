@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Card, CardImg } from 'reactstrap';
 
 
 export default class ClickPic extends Component {
@@ -25,9 +24,6 @@ export default class ClickPic extends Component {
         onClick={this.props.onClick} 
         data-name={this.props.children.src} 
         src={require(`../assets/${this.props.children.src}`)} alt={`Image of ${this.props.children.name}`} />
-      {/* <CardBody>
-        <CardTitle>{this.props.children.name}</CardTitle>
-      </CardBody> */}
     </Card>
   </div>
       </div>
