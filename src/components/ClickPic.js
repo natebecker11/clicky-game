@@ -18,7 +18,13 @@ export default class ClickPic extends Component {
     
   <div>
     <Card className="mt-2 mb-2">
-      <CardImg top width="100%" onClick={this.props.onClick} data-name={this.props.children.src} src={require(`../assets/${this.props.children.src}`)} alt="Card image cap" />
+      <CardImg 
+        className="img-thumbnail grower"
+        top 
+        width="100%" 
+        onClick={this.props.onClick} 
+        data-name={this.props.children.src} 
+        src={require(`../assets/${this.props.children.src}`)} alt={`Image of ${this.props.children.name}`} />
       {/* <CardBody>
         <CardTitle>{this.props.children.name}</CardTitle>
       </CardBody> */}

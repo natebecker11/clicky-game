@@ -49,9 +49,16 @@ class App extends Component {
 
   setShuffledArray = (event) => {
     let arrayCopy = this.state.charPics.slice(0)
-    let clickedCharIndex = arrayCopy.findIndex(char => char.src === event.target.dataset.name)
-    
+    const clickedCharIndex = arrayCopy.findIndex(char => char.src === event.target.dataset.name)
+    const marquee = document.querySelector('#marquee')
+    const shakenDiv = document.querySelector('#shakenDiv')
     if (arrayCopy[clickedCharIndex].clicked) {
+      marquee.classList.add('blinkI')
+      shakenDiv.classList.add('shake')
+      setTimeout(() => {
+        marquee.classList.remove('blinkI')
+        shakenDiv.classList.remove('shake')
+      }, 1000)
       return this.setState({
         score: 0,
         marqueeText: 'You guessed incorrectly!',
@@ -61,6 +68,10 @@ class App extends Component {
     // console.log(clickedCharIndex)
     // let arrayCopy = this.shuffleArray(this.state.charPics.slice(0))
     arrayCopy[clickedCharIndex].clicked = true
+    marquee.classList.add('blinkC')
+    setTimeout(() => {
+      marquee.classList.remove('blinkC')
+    }, 1000)
     this.shuffleArray(arrayCopy)
     this.incScore()
     this.setState({
@@ -83,13 +94,13 @@ class App extends Component {
           <Jumbotron>
             <h1 className="display-3">A Game Of Clicks</h1>
             <p className="lead">In The Game Of Clicks, You Either Click... Or You Don't.</p>
-            <p className="lead">{
+            <p id="marquee" className="lead font-weight-bold">{
               this.state.marqueeText
             }</p>
           </Jumbotron>
         </div>
         <div className="container">
-          <div className="row">
+          <div className="row" id='shakenDiv'>
             {this.state.charPics.map(char => <ClickPic onClick={this.setShuffledArray} key={char.src}>{char}</ClickPic>)}
           </div>
         </div>
