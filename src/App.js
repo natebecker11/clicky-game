@@ -11,8 +11,8 @@ class App extends Component {
   state = {
     score: 0,
     topScore: 0,
-    charPics: chars.slice(0),
-    marqueeText: ''
+    charPics: JSON.parse(JSON.stringify(chars)),
+    marqueeText: "Click an image to begin! Don't click the same one twice!"
   }
 
   incScore = () => {
@@ -50,12 +50,23 @@ class App extends Component {
   setShuffledArray = (event) => {
     let arrayCopy = this.state.charPics.slice(0)
     let clickedCharIndex = arrayCopy.findIndex(char => char.src === event.target.dataset.name)
-    console.log(clickedCharIndex)
+    
+    if (arrayCopy[clickedCharIndex].clicked) {
+      return this.setState({
+        score: 0,
+        marqueeText: 'You guessed incorrectly!',
+        charPics: JSON.parse(JSON.stringify(chars))
+      })
+    }
+    // console.log(clickedCharIndex)
     // let arrayCopy = this.shuffleArray(this.state.charPics.slice(0))
+    arrayCopy[clickedCharIndex].clicked = true
     this.shuffleArray(arrayCopy)
-
+    this.incScore()
     this.setState({
-      charPics: arrayCopy
+      charPics: arrayCopy,
+      marqueeText: 'You guessed correctly!'
+
     })
   }
 
@@ -66,23 +77,15 @@ class App extends Component {
           {
             score: this.state.score,
             topScore: this.state.topScore,
-            marqueeText: this.state.marqueeText
           }
         }</MainNav>
         <div>
           <Jumbotron>
-            <h1 className="display-3">Hello, world!</h1>
-            <p className="lead">This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.</p>
-
-            <p className="lead">
-              <Button color="primary" onClick={this.incScore} className="mr-2">Score Up</Button>
-              <Button color="primary" onClick={this.resetScore} className="mr-2">Reset Score</Button>
-              <Button color="primary" onClick={this.resetAllScores} className="mr-2">Reset All</Button>
-              <Button color="primary" onClick={console.log(this.state)} className="mr-2">State</Button>
-              <Button color="primary" onClick={this.setShuffledArray} className="mr-2">Shuffle</Button>
-
-
-            </p>
+            <h1 className="display-3">A Game Of Clicks</h1>
+            <p className="lead">In The Game Of Clicks, You Either Click... Or You Don't.</p>
+            <p className="lead">{
+              this.state.marqueeText
+            }</p>
           </Jumbotron>
         </div>
         <div className="container">

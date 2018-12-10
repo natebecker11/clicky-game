@@ -33,9 +33,7 @@ import {
             <NavbarBrand href="/">a game of clicks</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="mx-auto" navbar>
-                <span className="navbar-text">{this.props.children.marqueeText}</span>
-              </Nav>
+
               <Nav className="ml-auto" navbar>
                 <NavItem>
                   <span className="navbar-text mr-1">Score: {this.props.children.score} |</span>
