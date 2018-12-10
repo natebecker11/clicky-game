@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Arya Stark",
+    "src": "arya.jpg",
+    "clicked": false
+  },
+  {
+    "name": "Brienne of Tarth",
+    "src": "brienne.jpg",
+    "clicked": false
+  },
+  {
+    "name": "Cersei Lannister",
+    "src": "cersei.jpg",
+    "clicked": false
+  },
+  {
+    "name": "Danaerys Targaryen",
+    "src": "dany.jpg",
+    "clicked": false
+  },
+  {
+    "name": "Drogon",
+    "src": "drogon.jpg",
+    "clicked": false
+  },
+  {
+    "name": "The Hound",
+    "src": "hound.jpg",
+    "clicked": false
+  },
+  {
+    "name": "Jaime Lannister",
+    "src": "jaime.jpg",
+    "clicked": false
+  },
+  {
+    "name": "Jon Snow",
+    "src": "jon.jpg",
+    "clicked": false
+  },
+  {
+    "name": "Melisandre",
+    "src": "mel.jpg",
+    "clicked": false
+  },
+  {
+    "name": "Eddard Stark",
+    "src": "ned.jpg",
+    "clicked": false
+  },
+  {
+    "name": "Sansa Stark",
+    "src": "sansa.jpg",
+    "clicked": false
+  },
+  {
+    "name": "Tyrion Lannister",
+    "src": "tyrion.jpg",
+    "clicked": false
+  }
+]
