@@ -47,30 +47,39 @@ class App extends Component {
   }
 
   setShuffledArray = (event) => {
-    if (this.state.score === 11) {
+
+    let arrayCopy = this.state.charPics.slice(0)
+    const clickedCharIndex = arrayCopy.findIndex(char => char.src === event.target.dataset.name)
+    const marquee = document.querySelector('#marquee')
+    const shakenDiv = document.querySelector('#shakenDiv')
+
+    if (this.state.score === 11 && !arrayCopy[clickedCharIndex].clicked) {
+      arrayCopy[clickedCharIndex].clicked = true
       return this.setState({
         marqueeText: "WINNER!!!!!",
         score: 12,
         topScore: 12
       })
     }
-    let arrayCopy = this.state.charPics.slice(0)
-    const clickedCharIndex = arrayCopy.findIndex(char => char.src === event.target.dataset.name)
-    const marquee = document.querySelector('#marquee')
-    const shakenDiv = document.querySelector('#shakenDiv')
+
+    
     if (arrayCopy[clickedCharIndex].clicked) {
+      // CSS effects for shaking and blinking
       marquee.classList.add('blinkI')
       shakenDiv.classList.add('shake')
       setTimeout(() => {
         marquee.classList.remove('blinkI')
         shakenDiv.classList.remove('shake')
       }, 1000)
+
+      
       return this.setState({
         score: 0,
         marqueeText: 'You guessed incorrectly!',
         charPics: JSON.parse(JSON.stringify(chars))
       })
     }
+
     arrayCopy[clickedCharIndex].clicked = true
     marquee.classList.add('blinkC')
     setTimeout(() => {
@@ -81,7 +90,6 @@ class App extends Component {
     this.setState({
       charPics: arrayCopy,
       marqueeText: 'You guessed correctly!'
-
     })
   }
 
@@ -98,7 +106,6 @@ class App extends Component {
           <Jumbotron>
             <h1 className="display-3">A Game Of Clicks</h1>
             <p className="lead">In The Game Of Clicks, You Either Click... Or You Don't.</p>
-
           </Jumbotron>
         </div>
         <div className="container">

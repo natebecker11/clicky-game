@@ -7,10 +7,6 @@ export default class ClickPic extends Component {
     super(props)
   }
 
-  state = {
-    clicked: false
-  }
-
   render() {
     return (
       <div   className="col-12 col-sm-6 col-md-4 col-lg-3">
